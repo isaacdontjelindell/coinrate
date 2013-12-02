@@ -6,7 +6,7 @@ Quickly show the value of the Bitcoins in your Coinbase wallet.
 
 ####Setup
 
-Coinrate relies on your Coinbase API key. If you haven't already, enable your API key [here](https://coinbase.com/docs/api/authentication)  
+Coinrate relies on your Coinbase API key. If you haven't already, enable your API key [here](https://coinbase.com/docs/api/authentication).   
 
 Coinrate will look for your API key in the environment variable `COINBASE_API_KEY`.
 
