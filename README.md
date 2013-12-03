@@ -19,6 +19,7 @@ You will need Ruby, with a few extra modules installed:
 ```
 $ (sudo) gem install httpclient
 $ (sudo) gem install json
+$ (sudo) gem install optparse
 ```
 
 
