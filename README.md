@@ -27,8 +27,10 @@ $ (sudo) gem install json
 To use Coinrate:
 
 ```
-$ ./coinrate
+$ ./coinrate [-v]
 ```
+
+`-v`: Also shows the current Coinbase buy and sell rate of one Bitcoin
 
 ####License
 
