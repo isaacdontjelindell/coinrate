@@ -3,15 +3,20 @@
 
 require 'httpclient'
 require 'json'
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+    opts.banner = "Usage: example.rb [options]"
+
+    opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
+        options[:verbose] = v
+    end
+end.parse!
+
 
 api_key = ENV['COINBASE_API_KEY']
 client = HTTPClient.new
-
-buy_rate_str = client.get_content("https://coinbase.com/api/v1/prices/buy")
-buy_rate = JSON.parse(buy_rate_str)['amount'].to_f
-
-sell_rate_str = client.get_content("https://coinbase.com/api/v1/prices/sell")
-sell_rate = JSON.parse(sell_rate_str)['amount'].to_f
 
 bal_str = client.get_content("https://coinbase.com/api/v1/account/balance?api_key=#{api_key}")
 bal = JSON.parse(bal_str)['amount'].to_f
@@ -19,10 +24,19 @@ bal = JSON.parse(bal_str)['amount'].to_f
 sell_price_str = client.get_content("https://coinbase.com/api/v1/prices/sell?qty=#{bal}")
 sell_price = JSON.parse(sell_price_str)['amount']
 
-puts "Buy rate (1 BTC): #{buy_rate} USD"
-puts "Sell rate (1 BTC): #{sell_rate} USD"
-
-puts ""
-
 puts "Current balance: #{bal} BTC"
 puts "Current sell value: #{sell_price} USD"
+puts ""
+
+if options[:verbose]
+    buy_rate_str = client.get_content("https://coinbase.com/api/v1/prices/buy")
+    buy_rate = JSON.parse(buy_rate_str)['amount'].to_f
+
+    sell_rate_str = client.get_content("https://coinbase.com/api/v1/prices/sell")
+    sell_rate = JSON.parse(sell_rate_str)['amount'].to_f
+
+    puts "Buy rate (1 BTC): #{buy_rate} USD"
+    puts "Sell rate (1 BTC): #{sell_rate} USD"
+    puts ""
+end
+
