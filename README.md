@@ -1,7 +1,7 @@
 coinrate
 ========
 
-Quickly show the value of the Bitcoins in your Coinbase wallet.
+Quickly show the USD value of the Bitcoins in your Coinbase wallet.
 
 
 ####Setup
